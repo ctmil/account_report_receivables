@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>	
+
+		<delete model="ir.ui.menu" id="account_followup.menu_manual_reconcile_followup" />
+
+	</data>
+</openerp>
