@@ -3,6 +3,7 @@
 	<data>	
 
 		<delete model="ir.ui.menu" id="account_followup.menu_manual_reconcile_followup" />
+		<delete model="ir.ui.menu" id="account.periodical_processing_reconciliation" />
 
 	</data>
 </openerp>
