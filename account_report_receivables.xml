@@ -10,7 +10,7 @@
 
 		<template id="report_account_receivable_template_full">
 			<t t-call="report.html_container">
-				<t t-call="report.external_layout">
+				<t t-call="report.internal_layout">
 					<div class="page">
 						<h2>Ficha de Facturacion</h2>
 						<t t-foreach="docs" t-as="o">
