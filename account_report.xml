@@ -2,7 +2,7 @@
 <openerp>
 	<data>	
 		<report id="report_account_receivables"
-			string="Account Receivables"
+			string="Cuenta Corriente"
 			model="res.partner"
 			report_type="qweb-pdf"
 			name="account_report_receivables.report_account_receivable_template"

@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>	
+		<report id="report_account_receivables_full"
+			string="Ficha de Facturacion"
+			model="res.partner"
+			report_type="qweb-pdf"
+			name="account_report_receivables.report_account_receivable_template_full"
+			/>
+
+		<template id="report_account_receivable_template_full">
+			<t t-call="report.html_container">
+				<t t-call="report.external_layout">
+					<div class="page">
+						<h2>Ficha de Facturacion</h2>
+						<t t-foreach="docs" t-as="o">
+							<!-- Report page content -->
+						    <div t-if="o.credit > 0 or o.debit > 0">
+							<div class="row">
+								<h3 t-field="o.name" />
+							</div>
+							<div class="row">
+	                					<div class="col-xs-2" t-if="o.street">
+						                    <strong>Calle:</strong>
+						                    <p t-field="o.street"/>
+							        </div>
+                						<div class="col-xs-2" t-if="o.city">
+						                    <strong>Ciudad:</strong>
+					        	            <p t-field="o.city"/>
+						        	</div>
+	                					<div class="col-xs-2" t-if="o.phone">
+						                    <strong>Telefono:<p t-field="o.phone"/></strong>
+							        </div>
+                						<div class="col-xs-2" t-if="o.vat">
+						                    <strong>CUIT:</strong>
+						                    <p t-field="o.document_number"/>
+							        </div>
+	                					<div class="col-xs-2" t-if="o.user_id">
+						                    <strong>Vendedor:</strong>
+						                    <p t-field="o.user_id.name"/>
+							        </div>
+                						<div class="col-xs-2" t-if="o.credit">
+						                    <strong>Saldo Cliente:</strong>
+					        	            <p class="text-right" t-field="o.credit"/>
+						        	</div>
+	                					<div class="col-xs-2" t-if="o.debit">
+						                    <strong>Saldo Proveedor:</strong>
+						                    <p class="text-right" t-field="o.debit"/>
+							        </div>
+							</div>
+                					<div class="col-xs-12" t-if="o.invoice_ids">
+								<h4>Facturas</h4>
+                                                        	<table class="table table-condensed table-bordered">
+                                                                	<thead>
+                                                                        	<tr>
+                                                                               		<th>Fecha</th>
+	                                                                                <th>Nro.Fac</th>
+        	                                                                        <th>Tipo Fac</th>
+                	                                                                <th>Estado</th>
+                        	                                                        <th>Moneda</th>
+                                	                                                <th class="text-right">Monto</th>
+                                        	                                        <th class="text-right">Sin Pagar</th>
+                                                	                       </tr>
+                                                        	        </thead>
+									<tbody>
+										<t t-foreach="o.invoice_ids" t-as="i">
+										    <div t-if="i.state in ('open','waiting')">
+											<tr>
+											    <td><span t-field="i.date_invoice"/></td>
+		                                                                            <td><span t-field="i.number"/></td>
+                		                                                            <td><span t-field="i.journal_id.name"/></td>
+                                		                                            <td><span t-field="i.state"/></td>
+                                                		                            <td><span t-field="i.currency_id.name"/></td>
+                                                                		            <td class="text-right">
+                                                                                		    <span t-field="i.amount_total" />
+		                                                                            </td>
+											    <td class="text-right">
+                		                                                                    <span t-field="i.residual" />
+		                                                                            </td>
+											</tr>
+										    </div>
+										</t>
+									</tbody>
+								</table>
+								<br />
+							</div>
+						    </div>
+						</t>
+					</div>
+				</t>
+			</t>
+		</template>
+
+	</data>
+</openerp>
