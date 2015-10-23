@@ -71,35 +71,43 @@
 						                        	<td class="text-right">
 							                            <span t-field="l.residual" />
 							                        </td>
-									</div>
-						                    </tr>
-						                </tbody>
-							</table>
-                					<div class="col-xs-12" t-if="o.voucher_ids">
-								<h3>Pagos</h3>
-							</div>
-							<table class="table table-condensed" t-if="o.voucher_ids">
-						                <thead>
-									<tr>
-							                        <th>Fecha</th>	
-						        	                <th>Nro.Pago</th>
-						        	                <th>Método Pago</th>
-						        	                <th>Estado</th>
-						        	                <th>Moneda</th>
-						                        	<th class="text-right">Monto</th>
-							               </tr>
-						                </thead>
-						                <tbody class="invoice_tbody">
-						                    <tr t-foreach="o.voucher_ids" t-as="v">
-									<div t-if="v.state not in ('draft','cancel')">
-							                        <td><span t-field="v.date"/></td>
-							                        <td><span t-field="v.number"/></td>
-							                        <td><span t-field="v.journal_id.name"/></td>
-							                        <td><span t-field="v.state"/></td>
-							                        <td><span t-field="v.currency_id.name"/></td>
-							                        <td class="text-right">
-						        	                    <span t-field="v.amount" />
-						                	        </td>
+										<!-- Lista los pagos -->
+										<div t-if="l.payment_ids">
+											<!-- table class="table-condensed" -->
+												<tr />
+												<tr>
+										                        <td />	
+										                        <td><strong>Fecha</strong></td>	
+									        	                <td><strong>Nro.Pago</strong></td>
+									        	                <td><strong>Método Pago</strong></td>
+									        	                <td><strong>Moneda</strong></td>
+									                        	<td class="text-right"><strong>Monto</strong></td>
+												</tr>
+												<!-- tbody -->
+									                    		<tr t-foreach="l.payment_ids" t-as="p">
+														<div t-if="p.state in ('valid')">
+															<td />
+												                        <td><span t-field="p.date"/></td>
+												                        <td><span t-field="p.ref"/></td>
+												                        <td><span t-field="p.journal_id.name"/></td>
+												                        <td><span t-field="p.currency_id.name"/></td>
+												                        <td class="text-right">
+											        	                    <span t-field="p.credit" />
+											                	        </td>
+														</div>
+													</tr>
+													<tr>
+														<td />
+														<td />
+														<td />
+														<td />
+														<td />
+														<td />
+													</tr>	
+												<!-- /tbody>
+											</table -->
+										    <!-- /tr -->
+										</div>
 									</div>
 						                    </tr>
 						                </tbody>
