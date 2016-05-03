@@ -6,7 +6,7 @@
     'data': [
         'account_report.xml',
         'account_report_receivables.xml',
-        # 'account_view.xml',
+        'account_report_view.xml',
     ],
     'demo': [
     ],
